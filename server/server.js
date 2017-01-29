@@ -26,7 +26,7 @@ io.on('connection', (socket) => {
         users.addUser(socket.id, params.name, params.room);
 
         io.to(params.room).emit('updateUserList', users.getUserList(params.room));
-        socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chatroom'));
+        socket.emit('newMessage', generateMessage('Admin', `Welcome to the ${params.room} room.`));
         socket.broadcast.to(params.room).emit('newMessage', generateMessage('Admin', `Hey everyone, ${params.name} just joined the room`));
         
         callback();
